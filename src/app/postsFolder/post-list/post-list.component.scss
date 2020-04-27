@@ -1,0 +1,46 @@
+.my-container{
+    background-color: rgba(0, 0, 0, 0.938);
+ }
+
+.cardSpacing {
+    margin-bottom: 60px;
+}
+
+.card {
+    color: whitesmoke;
+}
+
+.wrestlerImage {
+    width: 300px;
+    height: 630px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.brandLogo {
+    height: 60px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.nxtLogo {
+    height: auto;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 12px;
+    padding-bottom: 10px; 
+}
+
+button {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.buttonStyle {
+    background-color: black;
+    border: 2px solid grey;
+}

@@ -1,0 +1,40 @@
+<div class="my-container">
+    <div class="container p-5">
+        <div *ngIf="posts.length > 0">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 cardSpacing" *ngFor="let post of posts">
+                    <div class="card h-100 shadow-lg rounded" style="background-color: rgb(0, 0, 0)">
+                        <hr>
+                        <div *ngIf="post.brand === 'nxt'">
+                            <img src="assets/images/brands/nxt.jpg" class="img-fluid nxtLogo">
+                        </div>
+                        <div *ngIf="post.brand === 'raw'">
+                            <img src="assets/images/brands/raw.jpg" class="img-fluid brandLogo">
+                        </div>
+                        <div *ngIf="post.brand === 'smackdown'">
+                            <img src="assets/images/brands/sd.jpg" class="img-fluid brandLogo">
+                        </div>
+                        <hr>
+                        <img [src]="post.imagePath" class="img-fluid card-img-top wrestlerImage">
+                        <div class="card-body" style="background-color: rgb(19, 18, 18)">
+                            <div class="card-text text-center">
+                                <p>Name: {{ post.name }}</p>
+                                <p>Finisher Move: {{ post.finisher }}</p>
+                                <button class="btn btn-primary buttonStyle" (click)="onEdit(post.id)">
+                                    EDIT
+                                </button>
+                                <button (click)="onDelete(post.id)" class="btn btn-danger buttonStyle">
+                                    DELETE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="posts.length <= 0">
+    <p >no new posts!</p>
+</div>

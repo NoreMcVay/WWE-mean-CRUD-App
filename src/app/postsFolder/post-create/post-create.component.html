@@ -1,0 +1,38 @@
+<div class="container p-5">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body"> 
+            <form [formGroup]="form" (submit)="onSavePost()">
+                <input type="text" class="form-control" formControlName="name" placeholder="Post Name">
+                <div *ngIf="form.get('name').invalid && form.get('name').touched">
+                    <span class="redText">Please enter a Wrestler name.</span>
+                </div>
+                <button type="button" (click)="filePicker.click()" class="btn btn-danger">
+                    Pick Image
+                </button>
+                <hr>
+                <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                    <input type="file" #filePicker (change)="onImagePicked($event)">
+                </span>
+                <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+                    <img [src]="imagePreview" [alt]="form.value.name" class="imageSize">
+                </div>
+                <label for="wweBrand">WWE Brand:</label>
+                <select name="brand" id="wweBrand" class="form-control" formControlName="brand">
+                    <option value="raw">Raw</option>
+                    <option value="smackdown">SmackDown</option>
+                    <option value="nxt">NXT</option>
+                </select>
+                <hr>
+                <div *ngIf="form.get('brand').invalid && form.get('brand').touched">
+                    <span class="redText">Please enter Brand name.</span>
+                </div>
+                <input class="form-control" rows="4" formControlName="finisher" placeholder="Post Signature Move">
+                <div *ngIf="form.get('finisher').invalid && form.get('finisher').touched">
+                        <span class="redText">Please enter their signature move.</span>
+                </div>
+                <button [disabled]="form.invalid" class="btn btn-success" type="submit">Save Post</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
