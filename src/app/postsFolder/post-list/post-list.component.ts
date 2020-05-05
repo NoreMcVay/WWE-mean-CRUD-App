@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WrestlerDetailsModalComponent } from '../postsModal/wrestler-details-modal/wrestler-details-modal.component';
+
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -14,8 +17,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   private postsSub: Subscription;
 
+
   constructor(private router: Router,
-              public postsService: PostsService) { }
+              public postsService: PostsService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.postsService.getPosts();
@@ -23,6 +28,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       .subscribe((postData: {posts: Post[]}) => { // {posts: Post[]} = Interface
         this.posts = postData.posts; // postData is whole Object.... {posts: objects from db now in an array}
         // postData.posts accesses the ARRAY of objects stored as value from line 38 from posts.service (spread operator)
+        console.log(this.posts);
       });
   }
 
@@ -35,6 +41,22 @@ export class PostListComponent implements OnInit, OnDestroy {
   onEdit(postId) {
     this.router.navigate(['/edit', postId]);
   }
+
+
+  customButtonContainingImage(wrestler) {
+    return {
+      myCustomMainColor: !!wrestler,
+      myCustomColorRed: wrestler.brand === 'Raw',
+      myCustomColorBlue: wrestler.brand === 'SmackDown',
+      myCustomColorGold: wrestler.brand === 'NXT'
+    };
+  }
+
+  openModal(wrestler) {
+    const modalRef = this.modalService.open(WrestlerDetailsModalComponent);
+    modalRef.componentInstance.wrestlerData = wrestler;
+  }
+
 
   ngOnDestroy() {
     this.postsSub.unsubscribe();

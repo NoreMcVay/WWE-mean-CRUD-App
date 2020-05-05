@@ -27,7 +27,8 @@ export class PostsService {
                 brand: post.brand,
                 finisher: post.finisher,
                 id: post._id,
-                imagePath: post.imagePath
+                imagePath: post.imagePath,
+                modalImagePath: post.modalImagePath,
               };
             }),
           };
@@ -44,36 +45,51 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string; name: string; brand: string, finisher: string, imagePath: string }>(
+    return this.http.get<{ _id: string; name: string; brand: string, finisher: string, imagePath: string, modalImagePath: string }>(
       'http://localhost:3000/api/posts/' + id // + id becomes part of path(parameterised route)
     );
   }
 
-  addPost(name: string, brand: string, image: File, finisher: string) {
+  addPost(name: string, brand: string, image: File, modalImage: File, finisher: string) {
     const postData = new FormData();
     postData.append('name', name);
     postData.append('brand', brand);
-    postData.append('image', image, name);
+    postData.append('imagesUploaded', image, name);
+    postData.append('imagesUploaded', modalImage, name);
     postData.append('finisher', finisher);
-    this.http
-    .post('http://localhost:3000/api/posts/', postData)
+    this.http.post('http://localhost:3000/api/posts/', postData)
     .subscribe(responseData => {
       this.router.navigate(['/']);
     });
   }
 
-  updatePost(id: string, name: string, brand: string, image: File | string, finisher: string) {
-    let postData: Post| FormData;
-    if (typeof image === 'object') { // object == File. If we wanna replace image, overwrite previous imagepath from mongodb with FormData!
-     postData = new FormData();
-     postData.append('id', id);
-     postData.append('name', name);
-     postData.append('brand', brand);
-     postData.append('image', image, name);
-     postData.append('finisher', finisher);
+  updatePost(id: string, name: string, brand: string, image: File | string, modalImage: File | string, finisher: string) {
+    let postData: any | FormData;
+    if (typeof image === 'object' && typeof modalImage === 'object') { // BOTH FILES
+      postData = new FormData(); postData.append('id', id);
+      postData.append('name', name);
+      postData.append('brand', brand);
+      postData.append('imagesUploaded', image, name);
+      postData.append('imagesUploaded', modalImage, name);
+      postData.append('finisher', finisher);
+    } else if (typeof image === 'string' && typeof modalImage === 'object') { // ONLY MODAL IMAGE
+      postData = new FormData();
+      postData.append('id', id);
+      postData.append('name', name);
+      postData.append('brand', brand);
+      postData.append('imagePath', image);
+      postData.append('imagesUploaded', modalImage, name);
+      postData.append('finisher', finisher);
+    } else if (typeof image === 'object' && typeof modalImage === 'string') { // ONLY IMAGE
+      postData = new FormData();
+      postData.append('id', id);
+      postData.append('name', name);
+      postData.append('brand', brand);
+      postData.append('imagesUploaded', image, name);
+      postData.append('modalImagePath', modalImage);
+      postData.append('finisher', finisher);
     } else { // aka else if (typeof image === 'string') because its using the imagePath from mongodb
-      postData = { id, name, brand, imagePath: image, finisher };
-      // line 75 above; if we aren't replacing the image, create imagePath key & pass the image value(image path, string)
+     postData = { id, name, brand, imagePath: image, modalImagePath: modalImage, finisher }; // BOTH STRINGS
     }
     this.http
     .put('http://localhost:3000/api/posts/' + id, postData) // + id becomes part of path(parameterised route)

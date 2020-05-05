@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PostsService } from '../posts.service';
 import { Post } from '../post.model';
 import { mimeType } from './mime-type.validator';
@@ -15,6 +15,7 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   form: FormGroup;
   imagePreview: string;
+  imagePreview2: string;
   private mode = 'create';
   private postId: string;
 
@@ -28,6 +29,10 @@ export class PostCreateComponent implements OnInit {
       }),
       brand: new FormControl(Validators.required),
       image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType]
+      }),
+      modalImage: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       }),
@@ -47,12 +52,14 @@ export class PostCreateComponent implements OnInit {
             brand: postData.brand,
             finisher: postData.finisher,
             imagePath: postData.imagePath,
+            modalImagePath: postData.modalImagePath
           };
           this.form.setValue({
             name: this.post.name,
             brand: this.post.brand,
             finisher: this.post.finisher,
-            image: this.post.imagePath
+            image: this.post.imagePath,
+            modalImage: this.post.modalImagePath
           });
        });
       } else {
@@ -64,11 +71,24 @@ export class PostCreateComponent implements OnInit {
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
+    console.log(file);
     this.form.patchValue({ image: file });
     this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string; // CHANGED FROM this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onModalImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    console.log(file);
+    this.form.patchValue({ modalImage: file });
+    this.form.get('modalImage').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview2 = reader.result as string; // CHANGED FROM this.imagePreview = reader.result;
     };
     reader.readAsDataURL(file);
   }
@@ -79,6 +99,7 @@ export class PostCreateComponent implements OnInit {
         this.form.value.name,
         this.form.value.brand,
         this.form.value.image,
+        this.form.value.modalImage,
         this.form.value.finisher
       );
     } else {
@@ -87,6 +108,7 @@ export class PostCreateComponent implements OnInit {
         this.form.value.name,
         this.form.value.brand,
         this.form.value.image,
+        this.form.value.modalImage,
         this.form.value.finisher
       );
     }

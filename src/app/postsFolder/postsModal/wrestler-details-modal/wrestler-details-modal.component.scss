@@ -1,0 +1,40 @@
+.brandLogo {
+    display: inline;
+    margin-left: 8px;
+    height: 60px;
+    width: auto;
+}
+
+.nxtLogo {
+    height: auto;
+    width: 120px;
+    display: inline;
+    margin-left: 8px;
+}
+
+.myCustomColorGold {
+    background-color: rgb(155, 138, 52);
+    border: 2px solid rgb(155, 138, 52);
+}
+
+.myCustomColorRed {
+    background-color: rgba(150, 16, 16, 0.842);
+    border: 2px solid rgba(150, 16, 16, 0.842);
+    border-radius: 5px;
+}
+
+.myCustomColorBlue {
+    background-color: rgba(31, 31, 228, 0.884);
+    border: 2px solid rgba(31, 31, 228, 0.884);
+}
+
+.modal-content, .modal-body, .modal-footer {
+    background-color: black;
+    border: 1px solid black;
+    color: whitesmoke;
+}
+
+.marginRight {
+    margin-right: 10px;
+}
+

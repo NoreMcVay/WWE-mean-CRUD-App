@@ -1,6 +1,7 @@
 .my-container{
-    background-color: rgba(0, 0, 0, 0.938);
+    background-color: rgba(0, 0, 0, 0.967);
  }
+
 
 .cardSpacing {
     margin-bottom: 60px;
@@ -35,6 +36,10 @@
     padding-bottom: 10px; 
 }
 
+h5 {
+    font-weight: bolder;
+}
+
 button {
     margin-left: 4px;
     margin-right: 4px;
@@ -44,3 +49,29 @@ button {
     background-color: black;
     border: 2px solid grey;
 }
+
+
+
+.myCustomMainColor {
+    background-color: rgba(6, 6, 6, 0.81);
+    padding: 0%;
+    border: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    outline-color: black;
+    border-radius: 8px;
+}
+
+.myCustomColorGold:hover {
+    background-color: rgb(155, 138, 52);
+}
+
+.myCustomColorRed:hover {
+    background-color: rgba(150, 16, 16, 0.842);
+}
+
+.myCustomColorBlue:hover {
+    background-color: rgba(31, 31, 228, 0.884);
+}
+
+

@@ -1,25 +1,25 @@
-<div class="my-container">
-    <div class="container p-5">
-        <div *ngIf="posts.length > 0">
+<div *ngIf="posts.length > 0">
+    <div class="my-container">
+        <div class="container p-5">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 cardSpacing" *ngFor="let post of posts">
-                    <div class="card h-100 shadow-lg rounded" style="background-color: rgb(0, 0, 0)">
-                        <hr>
-                        <div *ngIf="post.brand === 'nxt'">
+                    <div class="card h-100 shadow-md" style="background-color: black"><hr>
+                        <div *ngIf="post.brand === 'NXT'">
                             <img src="assets/images/brands/nxt.jpg" class="img-fluid nxtLogo">
                         </div>
-                        <div *ngIf="post.brand === 'raw'">
+                        <div *ngIf="post.brand === 'Raw'">
                             <img src="assets/images/brands/raw.jpg" class="img-fluid brandLogo">
                         </div>
-                        <div *ngIf="post.brand === 'smackdown'">
+                        <div *ngIf="post.brand === 'SmackDown'">
                             <img src="assets/images/brands/sd.jpg" class="img-fluid brandLogo">
-                        </div>
-                        <hr>
-                        <img [src]="post.imagePath" class="img-fluid card-img-top wrestlerImage">
-                        <div class="card-body" style="background-color: rgb(19, 18, 18)">
+                        </div><hr>
+                        <button 
+                            [ngClass]="customButtonContainingImage(post)"
+                            (click)="openModal(post)">
+                            <img [src]="post.imagePath" class="img-fluid wrestlerImage">
+                        </button>
+                        <div class="card-body">
                             <div class="card-text text-center">
-                                <p>Name: {{ post.name }}</p>
-                                <p>Finisher Move: {{ post.finisher }}</p>
                                 <button class="btn btn-primary buttonStyle" (click)="onEdit(post.id)">
                                     EDIT
                                 </button>
@@ -35,6 +35,9 @@
     </div>
 </div>
 
+
 <div *ngIf="posts.length <= 0">
-    <p >no new posts!</p>
+    <div class="container">
+        <h4 class="text-center p-5"><i>No Posts!</i></h4>
+    </div>
 </div>

@@ -16,11 +16,24 @@
                 <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
                     <img [src]="imagePreview" [alt]="form.value.name" class="imageSize">
                 </div>
+                <hr>
+                <!--modal image loader-->
+                <button type="button" (click)="filePicker2.click()" class="btn btn-danger">
+                        Pick Modal Image
+                    </button>
+                    <hr>
+                    <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                        <input type="file" #filePicker2 (change)="onModalImagePicked($event)">
+                    </span>
+                    <div *ngIf="imagePreview2 !== '' && imagePreview2 && form.get('modalImage').valid">
+                        <img [src]="imagePreview2" [alt]="form.value.name" class="imageSize">
+                    </div>
+                <!--modal image loader END-->
                 <label for="wweBrand">WWE Brand:</label>
                 <select name="brand" id="wweBrand" class="form-control" formControlName="brand">
-                    <option value="raw">Raw</option>
-                    <option value="smackdown">SmackDown</option>
-                    <option value="nxt">NXT</option>
+                    <option value="Raw">Raw</option>
+                    <option value="SmackDown">SmackDown</option>
+                    <option value="NXT">NXT</option>
                 </select>
                 <hr>
                 <div *ngIf="form.get('brand').invalid && form.get('brand').touched">

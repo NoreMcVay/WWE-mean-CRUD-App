@@ -4,5 +4,5 @@ export interface Post {
     brand: string;
     finisher: string;
     imagePath: string;
-
+    modalImagePath: string;
   }

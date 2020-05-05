@@ -1,0 +1,26 @@
+<div class="modal-content text-center">
+    <div class="modal-header" [ngClass]="getModalBrandColor(wrestlerData.brand)">
+        <h3 class='col-12 modal-title text-center'>{{wrestlerData.name}}
+            <button type="button" class="btn btn-outline-dark close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <ng-content></ng-content>
+            <div *ngIf="wrestlerData.brand === 'NXT'">
+                <p><strong>Brand:</strong><img src="assets/images/brands/nxt.jpg" class="img-fluid nxtLogo"></p>
+            </div>
+            <div *ngIf="wrestlerData.brand === 'Raw'">
+                <p><strong>Brand:</strong><img src="assets/images/brands/raw.jpg" class="brandLogo"></p>
+            </div>
+            <div *ngIf="wrestlerData.brand === 'SmackDown'">
+                <p><strong>Brand:</strong><img src="assets/images/brands/sd.jpg" class="img-fluid brandLogo"></p>
+            </div>
+            <p class="marginRight"><strong>Finisher: </strong>{{ wrestlerData.finisher }}</p>
+            <img [src]="wrestlerData.modalImagePath" class="img-fluid wrestlerImage">
+        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</div>
