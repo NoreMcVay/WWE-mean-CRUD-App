@@ -1,3 +1,39 @@
+@import "variables";
+
+.card, .card-body {
+    background-color: rgba(11, 11, 11, 0.925);
+    color: whitesmoke;
+}
+
+input[type="text"], select, option {
+    background-color : #2d2d2d; 
+    border-color: #2d2d2d;
+    color: grey; 
+}
+
+.wwe-logo {
+   height: 70px;
+   width: auto; 
+}
+
+// fixing bottom whitespace for multiple device sizes
+.my-container{
+    background-color: black;
+    padding-bottom: 500px;
+ }
+
+@media only screen and (max-width: 375px) {
+    .my-container {
+        padding-bottom: 300px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .my-container {
+        padding-bottom: 500px;
+    }
+}
+// end of whitespace fix
+
 .imageSize {
     width: 250px;
     height: auto;
@@ -8,10 +44,9 @@ input {
 }x
 
 input.ng-invalid.ng-touched {
-    border: 1px solid red;
+    border: 1px solid $raw-brand-color;
 }
 
-
 .redText {
-    color: red;
+    color: $raw-brand-color;
 }

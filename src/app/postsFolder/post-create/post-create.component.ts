@@ -6,6 +6,7 @@ import { mimeType } from './mime-type.validator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',

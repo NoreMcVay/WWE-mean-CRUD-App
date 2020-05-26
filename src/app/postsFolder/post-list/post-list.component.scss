@@ -1,7 +1,8 @@
-.my-container{
-    background-color: rgba(0, 0, 0, 0.967);
- }
+@import "variables";
 
+.my-container{
+    background-color: $main-container-background-color;
+ }
 
 .cardSpacing {
     margin-bottom: 60px;
@@ -51,9 +52,8 @@ button {
 }
 
 
-
 .myCustomMainColor {
-    background-color: rgba(6, 6, 6, 0.81);
+    background-color: $wrestler-button-color-black;
     padding: 0%;
     border: none;
     margin-left: 0px;
@@ -63,15 +63,13 @@ button {
 }
 
 .myCustomColorGold:hover {
-    background-color: rgb(155, 138, 52);
+    background-color: $nxt-brand-color;
 }
 
 .myCustomColorRed:hover {
-    background-color: rgba(150, 16, 16, 0.842);
+    background-color: $raw-brand-color;
 }
 
 .myCustomColorBlue:hover {
-    background-color: rgba(31, 31, 228, 0.884);
+    background-color: $smackdown-brand-color;
 }
-
-

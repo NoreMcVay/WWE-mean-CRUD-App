@@ -34,9 +34,10 @@ export class PostsService {
           };
         })
       )
-      .subscribe(transformedPostData => { // transformedPostData is WHOLE OBJECT containing array of posts {posts: transformed posts}
+      .subscribe(transformedPostData => { // transformedPostData is WHOLE OBJECT containing array of posts {posts: transformedPosts[]}
         this.posts = transformedPostData.posts; //  all the wrestler objects inside an array
-        this.postsUpdated.next({posts: [...this.posts]}); // copying the objects with the spread operator and placing them into an array
+        console.log('Array of posts', this.posts); // **ARRAY OF OBJECTS**
+        this.postsUpdated.next({posts: [...this.posts]}); // placing into a new array and copying key/value pairs of objects from that array
       });
    }
 
@@ -88,12 +89,13 @@ export class PostsService {
       postData.append('imagesUploaded', image, name);
       postData.append('modalImagePath', modalImage);
       postData.append('finisher', finisher);
-    } else { // aka else if (typeof image === 'string') because its using the imagePath from mongodb
-     postData = { id, name, brand, imagePath: image, modalImagePath: modalImage, finisher }; // BOTH STRINGS
+    } else { // aka else if (typeof image and modalImage === 'string') because its using the imagePath from mongodb
+     postData = { id, name, brand, imagePath: image, modalImagePath: modalImage, finisher };
     }
     this.http
     .put('http://localhost:3000/api/posts/' + id, postData) // + id becomes part of path(parameterised route)
     .subscribe(response => {
+      console.log(response);
       this.router.navigate(['/']);
     });
   }

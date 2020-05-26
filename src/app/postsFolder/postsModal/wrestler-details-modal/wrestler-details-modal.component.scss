@@ -1,3 +1,5 @@
+@import "variables";
+
 .brandLogo {
     display: inline;
     margin-left: 8px;
@@ -13,19 +15,19 @@
 }
 
 .myCustomColorGold {
-    background-color: rgb(155, 138, 52);
-    border: 2px solid rgb(155, 138, 52);
+    background-color: $nxt-brand-color;
+    border: 2px solid $nxt-brand-color;
 }
 
 .myCustomColorRed {
-    background-color: rgba(150, 16, 16, 0.842);
-    border: 2px solid rgba(150, 16, 16, 0.842);
+    background-color: $raw-brand-color;
+    border: 2px solid $raw-brand-color;
     border-radius: 5px;
 }
 
 .myCustomColorBlue {
-    background-color: rgba(31, 31, 228, 0.884);
-    border: 2px solid rgba(31, 31, 228, 0.884);
+    background-color: $smackdown-brand-color;
+    border: 2px solid $smackdown-brand-color;
 }
 
 .modal-content, .modal-body, .modal-footer {
@@ -36,5 +38,10 @@
 
 .marginRight {
     margin-right: 10px;
+}
+
+.wrestlerImage {
+    height: 400px;
+    width: auto;
 }
 

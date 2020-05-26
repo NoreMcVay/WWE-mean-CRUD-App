@@ -3,7 +3,8 @@
         <div class="container p-5">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 cardSpacing" *ngFor="let post of posts">
-                    <div class="card h-100 shadow-md" style="background-color: black"><hr>
+                    <div class="card h-100 shadow-md" style="background-color: black">
+                        <hr>
                         <div *ngIf="post.brand === 'NXT'">
                             <img src="assets/images/brands/nxt.jpg" class="img-fluid nxtLogo">
                         </div>
@@ -21,10 +22,10 @@
                         <div class="card-body">
                             <div class="card-text text-center">
                                 <button class="btn btn-primary buttonStyle" (click)="onEdit(post.id)">
-                                    EDIT
+                                    <i class="fa fa-edit fa-2x"></i>
                                 </button>
-                                <button (click)="onDelete(post.id)" class="btn btn-danger buttonStyle">
-                                    DELETE
+                                <button (click)="onDelete(post.id)" class="btn btn-danger">
+                                    <i class="fa fa-trash fa-2x"></i>
                                 </button>
                             </div>
                         </div>

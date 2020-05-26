@@ -27,8 +27,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((postData: {posts: Post[]}) => { // {posts: Post[]} = Interface
         this.posts = postData.posts; // postData is whole Object.... {posts: objects from db now in an array}
-        // postData.posts accesses the ARRAY of objects stored as value from line 38 from posts.service (spread operator)
-        console.log(this.posts);
+        // postData.posts accesses the ARRAY of objects stored as value from posts.service (spread operator)
       });
   }
 
